@@ -6,3 +6,6 @@ Python 2.6 =< Ver < 3.0:
     nxt-python2
     PyBluez # For Bluetooth connectivity (Windows or Linux)
     PyUSB # For usb communication
+
+
+# Parts of Robot Design inspired by designs on nxtprograms.com

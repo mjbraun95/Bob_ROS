@@ -35,6 +35,7 @@ int main(void) {
     }
 
     namedWindow("Input_1", 1);
+    namedWindow("Contours", 1);
 
     // Loop
     for (;;) {
@@ -44,11 +45,41 @@ int main(void) {
         // Detect and compute for image you want to find image in
         std::vector<KeyPoint> input_keypoints;
         Mat input_descriptors;
-        cvtColor(input, input, COLOR_BGR2GRAY); // convert to greyscale
+        Mat input_thing, input_gray;
+        cvtColor(input, input_thing, COLOR_BGR2GRAY); //convert to HSV
+        cvtColor(input, input_gray, COLOR_BGR2GRAY); // convert to greyscale
         detector->detectAndCompute(input, Mat(), input_keypoints, input_descriptors);
 
+        // Find matches
         std::vector< std::vector<DMatch> > matches;
         matcher->knnMatch(input_descriptors, matches, 2);
+
+        // Find contours
+        Mat mask;
+        std::vector< std::vector<Point> > contours;
+        std::vector<Vec4i> hier;
+        Mat edges;
+        inRange(input_thing, 127, 255, mask);
+        Canny(input_thing, edges, 80, 170);
+        findContours(edges, contours, hier, RETR_TREE, CHAIN_APPROX_SIMPLE);
+
+        Mat contour_img = Mat::zeros(input.rows, input.cols, CV_8UC3);
+
+        int idx = 0;
+        for (int i = 0; i < static_cast<int>(hier.size()); i++) {
+            if (hier[i][3] >= 0) {
+                drawContours(contour_img, contours, i, Scalar(0, 0, 255));
+            }
+            if (hier[i][2] >= 0) {
+                drawContours(contour_img, contours, i, Scalar(0, 255, 0));
+            }
+
+        }
+
+        if (contours.size() > 1) {
+            imshow("Contours", contour_img);
+        }
+
 
         /*
          * matches is a 2d array of matches

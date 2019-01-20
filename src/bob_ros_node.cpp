@@ -8,7 +8,7 @@ using namespace cv::xfeatures2d;
 
 int main(void) {
     // Detect keypoints and compute descriptors with SURF
-    int minHessian = 400;
+    int minHessian = 500;
     Ptr<SURF> detector = SURF::create(minHessian);
     // Match descriptors using FLANN matcher
     Ptr<BFMatcher> matcher = BFMatcher::create();
@@ -59,7 +59,7 @@ int main(void) {
 
         std::vector<DMatch> good_matches;
         for (int i = 0; i < static_cast<int>(matches.size()); i++) {
-            if (matches[i][0].distance < matches[i][1].distance * 0.5) {
+            if (matches[i][0].distance < matches[i][1].distance * 0.7) {
                 good_matches.push_back(matches[i][0]);
             }
         }
@@ -67,14 +67,14 @@ int main(void) {
         // Draw matches
         Mat image1_matches;
 
-        if (good_matches.size() >= 1) {
+        if (good_matches.size() >= 10) {
             drawMatches(input, input_keypoints, home, home_keypoints, good_matches, image1_matches, 
                     Scalar::all(-1), Scalar::all(-1), std::vector<char>(), 
                     DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS);
 
             imshow("Image_1", image1_matches);
         } else {
-            std::cout << "No matches!" << std::endl;
+            std::cout << "Not enough Matches!" << std::endl;
         }
 
 

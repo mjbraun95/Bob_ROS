@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>Bob-ROS</name>
+  <name>bob_ros</name>
   <version>0.0.0</version>
-  <description>The Bob-ROS package</description>
+  <description>The bob_ros package</description>
 
   <maintainer email="lenfesty@ualberta.ca">David Lenfesty</maintainer>
   <maintainer email="mjbraun@ualberta.ca">Matthew Braun</maintainer>
@@ -18,7 +18,7 @@
   <!-- Url tags are optional, but multiple are allowed, one per tag -->
   <!-- Optional attribute type can be: website, bugtracker, or repository -->
   <!-- Example: -->
-  <!-- <url type="website">http://wiki.ros.org/Bob-ROS</url> -->
+  <!-- <url type="website">http://wiki.ros.org/bob_ros</url> -->
 
 
   <!-- Author tags are optional, multiple are allowed, one per tag -->

@@ -25,4 +25,5 @@ cd opencv/build
 git checkout 3.3.1
 cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_EXTRA_MODULES_PATH=build_dir/opencv_contrib/modules ../
 make -j5
+sudo make install
 ```

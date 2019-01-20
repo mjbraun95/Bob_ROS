@@ -8,10 +8,15 @@ project(bob_ros)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  cv_bridge
   roscpp
   rospy
   std_msgs
+  usb_cam
+  image_transport
+  tf
+  geometry_msgs
+  ar_track_alvar_msgs
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -48,11 +53,10 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+add_message_files(
+  FILES
+  RobotPose.msg
+)
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -69,10 +73,11 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+  geometry_msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -114,14 +119,12 @@ catkin_package(
 ## Build ##
 ###########
 
-set(OpenCV_INCLUDE_DIRS /usr/local/)
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
-  ${OpenCV_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -138,8 +141,9 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(${PROJECT_NAME}_node src/bob_ros_node.cpp)
+add_executable(pose_decider_node src/pose_decider.cpp)
 
-## Rename C++ executable without prefix
+# Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
 ## e.g. "rosrun someones_pkg node" instead of "rosrun someones_pkg someones_pkg_node"
@@ -148,12 +152,6 @@ add_executable(${PROJECT_NAME}_node src/bob_ros_node.cpp)
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-
-# Hacky, awful way to do this
-# Really I should package this up but meh
-set(OpenCV_LIB_PREFIX /usr/local/lib)
-
-FILE(GLOB OpenCV_LIBRARIES ${OpenCV_LIB_PREFIX}/libopencv*.so)
 
 # set(OpenCV_LIBRARIES
 #   ${OpenCV_LIB_PREFIX}/libopencv_core.so
@@ -164,7 +162,10 @@ FILE(GLOB OpenCV_LIBRARIES ${OpenCV_LIB_PREFIX}/libopencv*.so)
 ## Specify libraries to link a library or executable target against
 target_link_libraries(${PROJECT_NAME}_node
   ${catkin_LIBRARIES}
-  ${OpenCV_LIBRARIES}
+)
+
+target_link_libraries(pose_decider_node
+  ${catkin_LIBRARIES}
 )
 
 #############

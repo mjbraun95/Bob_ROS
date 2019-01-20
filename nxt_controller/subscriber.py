@@ -1,16 +1,35 @@
 #!/usr/bin/env python
 import rospy
 from std_msgs.msg import String
+import threading
+import time
 
 def callback(data):
     rospy.loginfo(rospy.get_caller_id() + "I heard %s", data.data)
 
-def listener():
+def ros_init():
+    global nxt_command
+
     rospy.init_node('nxt_listener', anonymous=True)
 
-    rospy.Subscriber("nxt_command", String, callback)
+    nxt_command = rospy.Subscriber("/nxt_command", String, callback)
 
-    rospy.spin()
+
+class spinThread(threading.Thread):
+    def __init(self):
+        super(spinThread, self).__init__()
+
+    def run(self):
+        rospy.spin()
+
+t_ros = spinThread()
+
 
 if __name__ == '__main__':
-    listener()
+    ros_init()
+
+    t_ros.daemon = True
+    t_ros.start()
+
+    while not rospy.is_shutdown():
+        time.sleep(1)

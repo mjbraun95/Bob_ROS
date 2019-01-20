@@ -14,8 +14,6 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
 )
 
-find_package(OpenCV REQUIRED)
-
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -116,6 +114,8 @@ catkin_package(
 ## Build ##
 ###########
 
+set(OpenCV_INCLUDE_DIRS /usr/local/)
+
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
@@ -148,6 +148,18 @@ add_executable(${PROJECT_NAME}_node src/Bob-ROS_node.cpp)
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+# Hacky, awful way to do this
+# Really I should package this up but meh
+set(OpenCV_LIB_PREFIX /usr/local/lib)
+
+FILE(GLOB OpenCV_LIBRARIES ${OpenCV_LIB_PREFIX}/libopencv*.so)
+
+# set(OpenCV_LIBRARIES
+#   ${OpenCV_LIB_PREFIX}/libopencv_core.so
+#   ${OpenCV_LIB_PREFIX}/libopencv_features2d.so
+#   ${OpenCV_LIB_PREFIX}/libopencv_xfeatures2d.so
+# )
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(${PROJECT_NAME}_node

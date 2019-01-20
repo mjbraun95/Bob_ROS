@@ -1,6 +1,9 @@
 #include <stdio.h>
+#include <opencv2/opencv.hpp>
+#include <opencv2/xfeatures2d.hpp>
 
 using namespace cv;
+using namespace cv::xfeatures2d;
 
 int main(void) {
     Mat home = imread("/home/isthatme/homesymbol.png", CV_LOAD_IMAGE_COLOR);
@@ -11,9 +14,9 @@ int main(void) {
     }
 
     int minHessian = 400; // Hessian filter applied I think? Idk
-    cv::SurfFeatureDetector detector(minHessian);
+    Ptr<SURF> detector = SURF::create(minHessian);
     std::vector<KeyPoint> keypoints;
-    detector.detect(home, keypoints);
+    detector->detect(home, keypoints);
 
     Mat image_w_keypoints;
     drawKeypoints(home, keypoints, image_w_keypoints, Scalar::all(-1), DrawMatchesFlags::DEFAULT);

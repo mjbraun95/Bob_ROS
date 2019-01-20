@@ -18,8 +18,11 @@ To install on Ubuntu 16.04 you need to compile.
 cd build_dir
 git clone https://github.com/opencv/opencv
 git clone https://github.com/opencv/opencv_contrib
+cd opencv_contrib
+git checkout 3.3.1
 mkdir opencv/build
 cd opencv/build
-cmake -D 
-
+git checkout 3.3.1
+cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_EXTRA_MODULES_PATH=build_dir/opencv_contrib/modules ../
+make -j5
 ```

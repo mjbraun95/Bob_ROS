@@ -22,17 +22,17 @@ class bob(object):
         self.usonic = Ultrasonic(brick, PORT_1)
 
     # Set robot to go straight
-    def straight(self, power, regulation=False):
+    def straight(self, power, regulation=True):
         self.l_motor.run(power, regulation)
         self.r_motor.run(power, regulation)
 
     # Rotate the robot on the spot
-    def rotate(self, cw_power, regulation=False):
+    def rotate(self, cw_power, regulation=True):
         self.l_motor.run(cw_power, regulation)
         self.r_motor.run(-cw_power, regulation)
 
     # Drive the robot along a curve with a specific turning radius
-    def turn(self, power, direction, turn_radius, regulation=False): # Turning radius in centimeters
+    def turn(self, power, direction, turn_radius, regulation=True): # Turning radius in centimeters
         outer_r = turn_radius + (self.thicc/2)
         inner_r = turn_radius - (self.thicc/2)
         outer_p = power

@@ -1,9 +1,16 @@
 *** Ideas
 **** Point cloud
 ***** TODO Find program
+<<<<<<< Updated upstream
 **** Painting
 ***** Look into methods of colouring
 ** Resources
+=======
+**** Paper painter
+***** Look into methods of colouring
+**** Painting identifier
+***** TODO Look for library
+>>>>>>> Stashed changes
 *** Parts
 **** David's
 ***** 1 Webcam

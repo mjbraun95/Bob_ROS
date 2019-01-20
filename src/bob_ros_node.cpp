@@ -1,29 +1,28 @@
 #include <stdio.h>
 #include <opencv2/opencv.hpp>
-#include <opencv2/xfeatures2d.hpp>
 
 using namespace cv;
-using namespace cv::xfeatures2d;
 
 int main(void) {
-    Mat home = imread("/home/isthatme/homesymbol.png", CV_LOAD_IMAGE_COLOR);
+    // Opening camera
+    VideoCapture cap(0);
 
-    if (!home.data) {
-        std::cout << "Error reading image" << std::endl;
+    if (!cap.isOpened()) {
         return -1;
     }
 
-    int minHessian = 400; // Hessian filter applied I think? Idk
-    Ptr<SURF> detector = SURF::create(minHessian);
-    std::vector<KeyPoint> keypoints;
-    detector->detect(home, keypoints);
+    Mat edges;
+    namedWindow("edges", 1);
 
-    Mat image_w_keypoints;
-    drawKeypoints(home, keypoints, image_w_keypoints, Scalar::all(-1), DrawMatchesFlags::DEFAULT);
-    
-
-    imshow("Keypoints", image_w_keypoints);
-    waitKey(30);
+    for(;;) {
+        Mat frame;
+        cap >> frame;
+        cvtColor(frame, edges, COLOR_BGR2GRAY);
+        GaussianBlur(edges, edges, Size(7,7), 1.5, 1.5);
+        Canny(edges, edges, 0, 30, 3);
+        imshow("edges", edges);
+        if(waitKey(30) >= 0) break;
+    }
 
     return 0;
 }

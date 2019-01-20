@@ -1,0 +1,70 @@
+*** Ideas
+**** Point cloud
+***** TODO Find program
+<<<<<<< Updated upstream
+**** Painting
+***** Look into methods of colouring
+** Resources
+**** Paper painter
+***** Look into methods of colouring
+**** Painting identifier
+***** TODO Look for library
+>>>>>>> Stashed changes
+*** Parts
+**** David's
+***** 1 Webcam
+****** TODO Consider dual webcam
+****** Faces
+******* Face detecion
+******* Face recognition?
+******** TODO Look into dlib					       :matt:
+****** QR Code
+******* Save location
+******* Go to location
+***** 1 Raspberry Pi
+**** Lyndon's
+***** Genuino Uno
+***** 1 Ultrasonic sensor
+****** Primary wall detection
+***** 2 potentiometers
+***** 1 buzzer
+***** 8-ohm speaker
+***** Micro-servo (motor)
+***** LCD Display HD447800 compatible, 16x2
+***** 2 breadboards
+***** Photo sensor
+***** IC's
+***** Temperature sensor
+***** stepper motor
+***** Lego Mindstorms
+***** Wheels + Treads
+****** Make drive controls					       :matt:
+****** 3 motors
+**** Matt's
+***** IC's
+***** 2 breadboards
+***** lots of buttons
+***** lots of resistors
+***** 2 joysticks
+***** 1 adafruit display
+***** 1 smaller display
+***** ATMega 2560
+***** 37-in-1 ELEGOO kit
+*** Plan
+**** Matt
+***** TODO Face detection [0/2]
+      - [ ] Get webcam working on Bob
+      - [ ] Get dlib working on Bob
+***** TODO Tile detection [0/2]
+      - [ ] Find detection software
+      - [ ] Make programs to map out all tiles to coordinates
+      - [ ] Link to QR codes
+***** TODO QR Code scanner [0/2]
+      - [ ] Get QR scanning software
+      - [ ] Make QR code commands
+**** David
+***** TODO Get openCV working
+**** Lyndon
+***** TODO Drive controls [0/2]
+      - [ ] Make accurate turning functions
+      - [ ] Make accurate forward functions

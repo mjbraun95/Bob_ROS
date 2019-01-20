@@ -18,9 +18,6 @@ find_package(catkin REQUIRED COMPONENTS
 # find_package(Boost REQUIRED COMPONENTS system)
 
 
-add_compile_options(-std=c++11)
-
-
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
 ## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
@@ -141,8 +138,7 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(${PROJECT_NAME}_node src/bob_ros_node.cpp)
-# add_executable(screw_you src/screw_you.cpp)
-# add_executable(dlibtest1 src/dlibtest1.cpp)
+add_executable(screw_you src/screw_you.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -158,9 +154,9 @@ add_executable(${PROJECT_NAME}_node src/bob_ros_node.cpp)
 # Really I should package this up but meh
 set(OpenCV_LIB_PREFIX /usr/local/lib)
 
-FILE(GLOB OpenCV_LIBRARIES ${OpenCV_LIB_PREFIX}/libopencv*.so*)
+FILE(GLOB OpenCV_LIBRARIES ${OpenCV_LIB_PREFIX}/libopencv*.so)
 
-FILE(GLOB dlib_LIBRARIES /usr/local/lib/libdlib*)
+FILE(GLOB dlib_LIBRARIES /usr/local/lib/dlib*.so)
 
 # set(OpenCV_LIBRARIES
 #   ${OpenCV_LIB_PREFIX}/libopencv_core.so

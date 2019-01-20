@@ -17,7 +17,7 @@ int main(void) {
     std::vector<KeyPoint> home_keypoints;
     Mat home_descriptors;
     // Read in checking image
-    Mat home = imread("/home/isthatme/homesymbol_noborder.png", CV_LOAD_IMAGE_COLOR);
+    Mat home = imread("/home/matthew/Desktop/bob_ros/img/tileImageStraight1.png", CV_LOAD_IMAGE_COLOR);
     if (!home.data) {
         std::cout << "Error reading image" << std::endl;
         return -1;

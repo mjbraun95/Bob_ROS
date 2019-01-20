@@ -1,0 +1,42 @@
+*** Ideas
+**** Point cloud
+***** TODO Find program
+**** Painting
+***** Look into methods of colouring
+** Resources
+*** Parts
+**** David's
+***** 1 Webcam
+****** Faces
+******* Face detecion
+******* Face recognition?
+******** TODO Look into dlib					       :matt:
+****** QR Code
+******* Save location
+******* Go to location
+***** 1 Raspberry Pi
+**** Lyndon's
+***** Genuino Uno
+***** 1 Ultrasonic sensor
+****** Primary wall detection
+***** 2 potentiometers
+***** 1 buzzer
+***** 8-ohm speaker
+***** Micro-servo (motor)
+***** LCD Display HD447800 compatible, 16x2
+***** 2 breadboards
+***** Photo sensor
+***** IC's
+***** Temperature sensor
+***** 3 motors
+***** stepper motor
+**** Matt's
+***** IC's
+***** 2 breadboards
+***** lots of buttons
+***** lots of resistors
+***** 2 joysticks
+***** 1 adafruit display
+***** 1 smaller display
+***** ATMega 2560
+***** 37-in-1 ELEGOO kit
